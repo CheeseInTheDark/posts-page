@@ -1,13 +1,19 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
-import './index.css';
+import './index.css'; 
+import AddPost from './AddPost';
 
 function App() {
+  const element = <AddPost name="Sara" />;
+    ReactDOM.render(
+    element,
+   document.getElementById('new')
+  )
   return (
-    <div className="App">
-      <div id="root">
-        <div id="leftColumn"> 
+    <div className="App"> 
+        <div id="leftColumn">         
         </div>
         <div className="centerDiv">
           <div id="loginBox">
@@ -26,8 +32,7 @@ function App() {
             </p>
             <button id="login">GO!</button>
           </div>
-        </div>
-      </div>
+        </div> 
     </div>
   );
 }
