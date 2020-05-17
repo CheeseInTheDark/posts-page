@@ -9,9 +9,9 @@ function App() {
       <div id="root">
         <div id="leftColumn"> 
         </div>
-        <div class="centerDiv">
+        <div className="centerDiv">
           <div id="loginBox">
-            <p class="scriptTitle centered">Elizabeth Turns 16 <br />on May 26th, 2020!</p>
+            <p className="scriptTitle centered">Elizabeth Turns 16 <br />on May 26th, 2020!</p>
             <p>
               Thank you for joining the SUPER SECRET birthday card ( a bunch of posts from the people who love Elizabeth!). <br /> 
               <br />
@@ -22,7 +22,7 @@ function App() {
               <label>Your Name</label><br /><input type="text" id="visitorName" />
             </p>
             <p>
-              <label>Super Secret Birthday Car Password</label><br /><input type="text" id="secretPasscode" />
+              <label>Super Secret Birthday Card Password</label><br /><input type="text" id="secretPasscode" />
             </p>
             <button id="login">GO!</button>
           </div>
