@@ -32,7 +32,7 @@
 #loginBox {
   font-family: 'Bitter', sans-serif;
   font-size: 1.5rem;
-  width: 500px;
+  width: 45vh;
   margin-top: 2rem;
   padding: 1.5rem;
   border: 1px solid #6610f2;
@@ -47,7 +47,7 @@
 
 .centerDiv
 {
-  width: 500px; 
+  width: 45vw; 
   margin: 0 auto; 
 }
 
