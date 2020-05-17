@@ -1,0 +1,19 @@
+{
+  "name": "elizoparty",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CheeseInTheDark/elizoparty.git"
+  },
+  "author": "Jeff Lieb/Sandra Arendt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CheeseInTheDark/elizoparty/issues"
+  },
+  "homepage": "https://github.com/CheeseInTheDark/elizoparty#readme"
+}
