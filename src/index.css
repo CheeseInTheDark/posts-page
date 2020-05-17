@@ -1,8 +1,5 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -11,3 +8,39 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.scriptTitle {
+  font-family: 'Tangerine', serif;
+  font-size: 3rem;
+} 
+
+.centered {
+  text-align:center;
+}
+
+p {
+  font-family: 'Bitter', sans-serif;
+  font-size: 1rem;
+}
+
+label {
+  width: 20%;
+  text-align: right;
+  font-family: 'Bitter', sans-serif;
+  font-size:1rem;
+  color: #6610f2;
+}
+
+button {
+  background-color: #40c9ff;
+  padding:1em;
+  font-family: 'Bitter', sans-serif;
+  border: none;
+}
+
+.borderedBox {
+  border:1px solid #ccc;
+  padding:25px;
+}
+
+ 

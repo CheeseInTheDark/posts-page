@@ -29,15 +29,25 @@
 }
 
 #loginBox {
-  width:50em;
-  margin-left: calc(50% - 12em);
-  margin-top:5em;
-  border: 4px dotted #6610f2;
+  font-family: 'Bitter', sans-serif;
+  font-size: 1.5rem;
+  width: 45vw;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1px solid #6610f2;
+  float: left;
+  box-sizing: border-box;
 }
 
 #leftColumn {
-  width: 200px;
+  width: 17vw;
   float:left;
+}
+
+.centerDiv
+{
+  width: 45vw; 
+  margin: 0 auto; 
 }
 
 @keyframes App-logo-spin {

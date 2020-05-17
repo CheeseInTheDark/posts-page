@@ -1,26 +1,33 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css'; 
+import './App.css';
+import './index.css';
 
 function App() {
   return (
-    <div className="App"> 
+    <div className="App">
       <div id="root">
-        <div id="leftColumn">
-          some picture goes here
+        <div id="leftColumn"> 
         </div>
-        <div id="loginBox">
-          <p>Elizabeth Turns 16 on May 26th, 2020!<br />
-          Glad you are here! We have sent you a super secret Passcode to gain entry to Elizabeth's SUPER SECRET birthday card!  <br />If you have forgotten it, please text mom (Sandy) at 614-537-3116.</p>
-          <p>
-            <label>Your Name</label><br /><input type="text" id="visitorName" />
-          </p>
-          <p>
-            <label>Super Secret Passcode</label><br /><input type="text" id="secretPasscode" />
-          </p>
-          <button id="login">GO!</button>
+        <div className="centerDiv">
+          <div id="loginBox">
+            <p className="scriptTitle centered">Elizabeth Turns 16 <br />on May 26th, 2020!</p>
+            <p>
+              Thank you for joining the SUPER SECRET birthday card ( a bunch of posts from the people who love Elizabeth!). <br /> 
+              <br />
+              If you have forgotten your TOTALLY SECRET birthday card password, please text mom (Sandy) <br />
+              at 614-537-3116.
+              </p>
+            <p>
+              <label>Your Name</label><br /><input type="text" id="visitorName" />
+            </p>
+            <p>
+              <label>Super Secret Birthday Card Password</label><br /><input type="text" id="secretPasscode" />
+            </p>
+            <button id="login">GO!</button>
+          </div>
         </div>
-      </div>  
+      </div>
     </div>
   );
 }
