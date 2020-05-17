@@ -28,6 +28,23 @@
   color: #61dafb;
 }
 
+
+/* added by mom */
+#loginBox {
+  width:50em;
+  margin-left: calc(50% - 12em);
+  margin-top:5em;
+  border: 4px dotted #6610f2;
+}
+
+#leftColumn {
+  width: 200px;
+  float:left;
+}
+
+/* end added by mom */
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
