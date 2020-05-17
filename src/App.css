@@ -27,12 +27,11 @@
 .App-link {
   color: #61dafb;
 }
- 
 
 #loginBox {
   font-family: 'Bitter', sans-serif;
   font-size: 1.5rem;
-  width: 45vh;
+  width: 45vw;
   margin-top: 2rem;
   padding: 1.5rem;
   border: 1px solid #6610f2;
