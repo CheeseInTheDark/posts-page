@@ -18,6 +18,7 @@ function App() {
           <p>
             <label>Super Secret Passcode</label><br /><input type="text" id="secretPasscode" />
           </p>
+          <button id="login">GO!</button>
         </div>
       </div>  
     </div>
