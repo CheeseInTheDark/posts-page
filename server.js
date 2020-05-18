@@ -1,17 +1,26 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App';
-import PostsConnector from './PostsConnector'
-import { Provider } from 'react-redux'
-import store from './store'
+const express = require('express');
+const fileUpload = require('express-fileupload');
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={ store }>
-      <PostsConnector />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const app = express();
 
+app.use(fileUpload());
+
+// Upload Endpoint
+app.post('/upload', (req, res) => {
+  if (req.files === null) {
+    return res.status(400).json({ msg: 'No file uploaded' });
+  }
+
+  const file = req.files.file;
+
+  file.mv(`${__dirname}/client/public/uploads/${file.name}`, err => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send(err);
+    }
+
+    res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
+  });
+});
+
+app.listen(5000, () => console.log('Server Started...'));
