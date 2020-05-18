@@ -28,6 +28,30 @@
   color: #61dafb;
 }
 
+#loginBox {
+  font-family: 'Bitter', sans-serif;
+  font-size: 1.5rem;
+  width: 45vw;
+  margin-top: 2rem;
+  padding: 2.5rem;
+  border: 1px solid #6610f2;
+  float: left;
+  box-sizing: border-box;
+  height: 90vh;
+}
+
+#leftColumn {
+  width: 17vw;
+  float:left;
+  margin:3em;
+}
+
+.centerDiv
+{
+  width: 45vw; 
+  margin: 0 auto; 
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

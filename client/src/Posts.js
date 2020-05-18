@@ -1,7 +1,7 @@
 import React from 'react';
 import Post from './Post'
 import './Posts.css';
-import FileUpload from './components/FileUpload';
+import FileUpload from '../src/components/FileUpload';
 
 function Posts({ posts }) {
     return <div>
