@@ -10,11 +10,11 @@
 
 .post-image {
   max-height: 40vh;
-  max-width: 60vw;
+  max-width: 60%;
 }
 .post-text { 
    font-family: 'Bitter',sans-serif;
-   width:40vw;
+   width:40%;
 }
 
 .post-image-container { 
