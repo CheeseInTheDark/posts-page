@@ -65,7 +65,14 @@ const FileUpload = () => {
           <label className='custom-file-label' htmlFor='customFile'>
             {filename}
           </label>
+          <p>
+              <label>Message</label><br /><textarea rows="6" cols="150" id="visitorMessage" />
+            </p>
         </div>
+        <div className="form-group">
+    <label htmlFor="exampleFormControlTextarea1">Example textarea</label>
+    <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
 
         <Progress percentage={uploadPercentage} />
 
