@@ -1,7 +1,13 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 3001
+
+import auth from './auth'
 
 app.get('/', (req, res) => res.send('GREETINGS TERGIVERSE!'))
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+app.post('/auth', express.json(), auth)
+
+export default new Promise(resolve => {
+    const server = app.listen(port, () => resolve(server))
+})
