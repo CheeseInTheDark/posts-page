@@ -11,7 +11,7 @@ import PostsConnector from './PostsConnector';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={ store }>
-      <PostsConnector />
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
