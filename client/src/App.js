@@ -1,9 +1,9 @@
-import React from 'react'; 
-import './App.css';
-import './index.css';
+import React from 'react'
+import './App.css'  
+import './index.css'
 
 function App() {
-  return (
+  return ( 
     <div className="App">
       <div id="root">
         <div id="leftColumn"> 
@@ -24,19 +24,19 @@ function App() {
               </p>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label htmlFor="inputVisitor">Birthday Wish From</label>
+                <label htmlFor="inputVisitor">From</label>
                 <input type="text" className="form-control" id="inputVisitor" placeholder="Your Name" />
               </div>
               <div className="form-group col-md-6">
                 <label htmlFor="inputPassword">Password</label>
                 <input type="text" className="form-control" id="inputPassword" placeholder="Super Secret Password" />
               </div>
-            </div>
+            </div> 
             <button type="submit" className="btn btn-primary">Next</button> 
           </div>
         </div>
       </div>
-    </div>
+    </div> 
   );
 }
 
