@@ -1,6 +1,5 @@
 import React from 'react'
 import moment from 'moment'
-import Posts from './Posts'
 
 export default function Post({ post }) {
 
