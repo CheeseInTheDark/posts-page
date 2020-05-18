@@ -1,0 +1,60 @@
+.posts {
+    width:80vw;
+    margin-bottom: bottom 3rem;
+}
+.post-box { 
+    margin-bottom:1rem; 
+    width:80vw;
+    border-top: 1px solid #ccc;
+}
+
+.post-image {
+  max-height: 40vh;
+  max-width: 60%;
+}
+.post-text { 
+   font-family: 'Bitter',sans-serif;
+   width:40%;
+}
+
+.post-image-container { 
+    padding:3rem;   
+}
+
+.post-name {
+    font-family: 'Bitter', sans-serif;
+    font-size: 1.2rem;
+    color: #40c9ff;
+}
+
+.post-date {
+    font-family: 'Bitter', sans-serif;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.post-message {
+    font-family: 'Bitter', sans-serif;
+    font-size: 1.5rem;
+    color: #000;
+}
+
+.post-box {
+  clear: both; 
+}
+
+.post-box:nth-child(odd) div.post-text {
+  float: right;
+}
+
+.post-box:nth-child(odd) div.post-image-container {
+  float: left;
+}
+
+.post-box:nth-child(even) div.post-text {
+  float: left;
+}
+
+.post-box:nth-child(even) div.post-image-container {
+  float: right;
+}
