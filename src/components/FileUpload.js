@@ -55,40 +55,41 @@ const FileUpload = () => {
     <Fragment>
       {message ? <Message msg={message} /> : null}
       <form onSubmit={onSubmit}>
-        <div className='custom-file mb-4'>
-          <input
-            type='file'
-            className='custom-file-input'
-            id='customFile'
-            onChange={onChange}
-          />
-          <label className='custom-file-label' htmlFor='customFile'>
-            {filename}
-          </label>
-          <p>
-            <label>Message</label><br /><textarea rows="6" cols="150" id="visitorMessage" />
-          </p>
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleFormControlTextarea1">Example textarea</label>
-          <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-
-        <Progress percentage={uploadPercentage} />
-        <input
-          type='submit'
-          value='Upload'
-          className='btn btn-primary btn-block mt-4'
-        />
-      </form>
-      {uploadedFile ? (
-        <div className='row mt-5'>
-          <div className='col-md-6 m-auto'>
-            <h3 className='text-center'>{uploadedFile.fileName}</h3>
-            <img style={{ width: '100%' }} src={uploadedFile.filePath} alt='' />
+        <div className="container">
+          <div className="row">
+            <div className="form-group col-22">
+              <label className="form-group col-8" htmlFor="visitorMessage">Message</label>
+              <textarea  class="form-control"rows="4" cols="150" id="visitorMessage" />
+            </div>
           </div>
+          <div className="row">
+            <label className="form-group ml-3">Share a Picture</label>
+            <div className="form-group col-4 custom-file ml-3 mr-5">
+              <input
+                type='file'
+                className='custom-file-input'
+                id='customFile'
+                onChange={onChange}
+              />
+              <label className='form-group custom-file-label' htmlFor='customFile'>
+                {filename}
+              </label>
+            </div>
+            <label className='form-group ml-3' htmlFor="inputVisitor">From</label>
+            <div className="form-group col-3">
+              <input type="text" className="form-control" id="inputVisitor" placeholder="Your Name" />
+            </div>
+            <input
+            type='submit'
+            value='Send!'
+            className='btn btn-secondary'
+          /> 
+
+          </div>
+          <Progress percentage={uploadPercentage} />
+<br />
         </div>
-      ) : null}
+      </form>
     </Fragment>
   );
 };
