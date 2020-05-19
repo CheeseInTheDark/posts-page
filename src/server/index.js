@@ -8,6 +8,6 @@ app.get('/', (req, res) => res.send('GREETINGS TERGIVERSE!'))
 
 app.post('/auth', express.json(), auth)
 
-export default new Promise(resolve => {
+module.exports = new Promise(resolve => {
     const server = app.listen(port, () => resolve(server))
 })

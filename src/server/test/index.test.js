@@ -1,6 +1,5 @@
 import request from 'supertest'
 
-
 jest.mock('uid-generator', () => ({
     __esModule: true,
     default: function UIDGenerator() {
@@ -13,38 +12,41 @@ jest.mock('uid-generator', () => ({
 
 describe("app", () => {
     let subject
-
+    
     beforeEach(async () => {
-        delete require.cache[require.resolve('../index')]
-        subject = await require('../index').default
-    })
-
-    afterEach(done => {
-        subject.close(done)
+        subject = await require('../index.js')
     })
     
-    test("auth returns 403 if password is wrong", async () => {
-        const response = await request(subject)
-            .post('/auth')
-            .send({
-                password: "LizzieIs16."
-            })
-
-        expect(response.status).toBe(403)
+    afterEach(done => {
+        subject.close(() => {
+            jest.resetModules()
+            done()
+        })
     })
+    
+    describe("auth", () => {
+        test("auth returns 403 if password is wrong", async () => {
+            const response = await request(subject)
+                .post('/auth')
+                .send({
+                    password: "LizzieIs16."
+                })
 
-    test("auth returns 8200 and token if the provided password is correct", async () => {
-        const expectedPassword = "LizzieIs16"
+            expect(response.status).toBe(403)
+        })
 
-        const response = await request(subject)
-            .post('/auth')
-            .send({
-                password: expectedPassword
-            })
+        test("auth returns 200 and token if the provided password is correct", async () => {
+            const expectedPassword = "LizzieIs16"
 
-            console.log(response)
+            const response = await request(subject)
+                .post('/auth')
+                .send({
+                    password: expectedPassword
+                })
+
             expect(response.status).toBe(200)
             expect(response.header['content-type']).toBe("application/json; charset=utf-8")
             expect(response.body.token).toBe("token")
+        })
     })
 })
