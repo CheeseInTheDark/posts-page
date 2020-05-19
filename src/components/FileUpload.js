@@ -1,33 +1,35 @@
 import React, { Fragment, useState } from 'react';
 import Message from './Message';
 import Progress from './Progress';
-import axios from 'axios';
+import axios from 'axios'; 
+
 
 const FileUpload = () => {
-  const [file, setFile] = useState('');
-  const [filename, setFilename] = useState('Choose File');
-  const [uploadedFile, setUploadedFile] = useState({});
-  const [message, setMessage] = useState('');
-  const [uploadPercentage, setUploadPercentage] = useState(0); 
-
+  const [file, setFile] = useState('')
+  const [filename, setFilename] = useState('Choose File')
+  const [uploadedFile, setUploadedFile] = useState({})
+  const [message, setMessage] = useState('')
+  const [uploadPercentage, setUploadPercentage] = useState(0) 
+ 
+ 
   const onChange = e => {
     setFile(e.target.files[0]);
-    setFilename(e.target.files[0].name); //this will be a rename eventually
+    setFilename(e.target.files[0].name);
   };
 
   const onSubmit = async e => {
-    e.preventDefault();
+    e.preventDefault(); 
     const formData = new FormData();
-    formData.append('file', file); 
-    formData.append('visitorMessage', document.getElementById("visitorMessage").value);
-    formData.append('visitorName', document.getElementById("visitorName").value);
-    for (var value of formData.values()) {
-      console.log(value); 
-   }
-   
+
+    let visitorMessage =  document.getElementById("visitorMessage").value 
+    let visitorName =  document.getElementById("visitorName").value 
     
-    try {
-      const res = await axios.post('/post', formData, {
+    formData.append('visitorMessage', visitorMessage);
+    formData.append('visitorName', visitorName ); 
+    formData.append('file', file); 
+
+    try { 
+      const res = await axios.post('/post',  formData, { 
         headers: {
           'Content-Type': 'multipart/form-data'
         },
@@ -37,18 +39,15 @@ const FileUpload = () => {
               Math.round((progressEvent.loaded * 100) / progressEvent.total)
             )
           );
-
           // Clear percentage
-          setTimeout(() => setUploadPercentage(0), 10000);
+          setTimeout(() => setUploadPercentage(0), 3000);
+          setMessage('Your Birthday Message has been Saved!');
+          document.getElementById("visitorMessage").value = "";
+          document.getElementById("visitorName").value = "";
         }
-      });
-
-      const { fileName, filePath } = res.data;
-      console.log("resp data: " + res.data);
-
+      }); 
       setUploadedFile({ fileName, filePath });
-
-      setMessage('File Uploaded');
+      const { fileName, filePath } = res.data; 
     } catch (err) {
       if (err.response.status === 500) {
         setMessage('There was a problem with the server');
@@ -60,9 +59,12 @@ const FileUpload = () => {
 
   return (
     <Fragment>
-      {message ? <Message msg={message} /> : null}
+     
       <form id="postForm" onSubmit={onSubmit}>
         <div className="container">
+          <div className="row">
+          {message ? <Message msg={message} /> : null}
+          </div>
           <div className="row">
             <div className="form-group col-22">
               <label className="form-group col-8" htmlFor="visitorMessage">Message</label>

@@ -9,7 +9,7 @@ function App() {
         <div id="leftColumn"> 
           <p className="scriptTitle centered">Elizabeth Turns 16 <br />on May 26th, 2020!</p>
           <p className="scriptTitle">Happy 16th</p>
-          <img src="uploads/bee.png" width="100" />
+          <img src="bee.png" width="100" />
           <p className="scriptTitle">Day Elizabeth!</p>
         </div>
         <div className="centerDiv">

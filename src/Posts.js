@@ -7,7 +7,7 @@ function Posts({ posts }) {
     return <div>
         <div id="leftColumn">
             <p className="scriptTitle">Happy 16th</p>
-            <img src="uploads/bee.png" width="100" />
+            <img src="bee.png" width="100" />
             <p className="scriptTitle">Day Elizabeth!</p>
         </div>
         <div className="posts centerDiv"> 
