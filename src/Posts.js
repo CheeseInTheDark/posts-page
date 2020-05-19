@@ -11,7 +11,7 @@ function Posts({ posts }) {
             <p className="scriptTitle">Day Elizabeth!</p>
         </div>
         <div className="posts centerDiv"> 
-        <FileUpload />
+            <FileUpload />
             {posts.map((post, index) => <Post key={index} post={post} />)}
         </div>
     </div>

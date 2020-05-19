@@ -37,7 +37,7 @@ app.post('/post', (req, res) => {
       if (err) {
         console.error(err)
         return res.status(500).send(err)
-      }
+      } 
     })
   }
   var messageJSON = JSON.stringify(messageData);
@@ -46,6 +46,7 @@ app.post('/post', (req, res) => {
     if (err) throw err;
     console.log('The file has been saved!');
   });
+  return res.status(200).send()
 })
 
 app.listen(port, () => console.log('Server Started...'))

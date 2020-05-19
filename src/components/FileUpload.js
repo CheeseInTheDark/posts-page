@@ -1,35 +1,35 @@
 import React, { Fragment, useState } from 'react';
 import Message from './Message';
 import Progress from './Progress';
-import axios from 'axios'; 
+import axios from 'axios';
+import store from '../store';
 
 
 const FileUpload = () => {
   const [file, setFile] = useState('')
   const [filename, setFilename] = useState('Choose File')
-  const [uploadedFile, setUploadedFile] = useState({})
   const [message, setMessage] = useState('')
-  const [uploadPercentage, setUploadPercentage] = useState(0) 
- 
- 
+  const [uploadPercentage, setUploadPercentage] = useState(0)
+
+
   const onChange = e => {
     setFile(e.target.files[0]);
     setFilename(e.target.files[0].name);
   };
 
   const onSubmit = async e => {
-    e.preventDefault(); 
+    e.preventDefault();
     const formData = new FormData();
 
-    let visitorMessage =  document.getElementById("visitorMessage").value 
-    let visitorName =  document.getElementById("visitorName").value 
-    
-    formData.append('visitorMessage', visitorMessage);
-    formData.append('visitorName', visitorName ); 
-    formData.append('file', file); 
+    let visitorMessage = document.getElementById("visitorMessage").value
+    let visitorName = document.getElementById("visitorName").value
 
-    try { 
-      const res = await axios.post('/post',  formData, { 
+    formData.append('visitorMessage', visitorMessage);
+    formData.append('visitorName', visitorName);
+    formData.append('file', file);
+
+    try {
+      const res = await axios.post('/post', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
@@ -41,14 +41,13 @@ const FileUpload = () => {
           );
           // Clear percentage
           setTimeout(() => setUploadPercentage(0), 3000);
-          setMessage('Your Birthday Message has been Saved!');
-          document.getElementById("visitorMessage").value = "";
-          document.getElementById("visitorName").value = "";
         }
-      }); 
-      setUploadedFile({ fileName, filePath });
-      const { fileName, filePath } = res.data; 
+      });
+      setMessage('Your Birthday Message has been Saved!');
+      document.getElementById("visitorMessage").value = "";
+      document.getElementById("visitorName").value = "";
     } catch (err) {
+      console.log(err)
       if (err.response.status === 500) {
         setMessage('There was a problem with the server');
       } else {
@@ -59,16 +58,16 @@ const FileUpload = () => {
 
   return (
     <Fragment>
-     
       <form id="postForm" onSubmit={onSubmit}>
         <div className="container">
           <div className="row">
-          {message ? <Message msg={message} /> : null}
+            {message ? <Message msg={message} /> : null}
+            <p className="scriptTitle centered">Add a Photo and Birthday Message!</p>
           </div>
           <div className="row">
             <div className="form-group col-22">
               <label className="form-group col-8" htmlFor="visitorMessage">Message</label>
-              <textarea  className="form-control"rows="4" cols="150" id="visitorMessage" />
+              <textarea className="form-control" rows="4" cols="150" id="visitorMessage" />
             </div>
           </div>
           <div className="row">
@@ -89,14 +88,13 @@ const FileUpload = () => {
               <input type="text" className="form-control" id="visitorName" placeholder="Your Name" />
             </div>
             <input
-            type='submit'
-            value='Send!'
-            className='btn btn-secondary'
-          /> 
-
+              type='submit'
+              value='Send!'
+              className='btn btn-secondary'
+            />
           </div>
           <Progress percentage={uploadPercentage} />
-<br />
+          <br />
         </div>
       </form>
     </Fragment>

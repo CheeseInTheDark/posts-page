@@ -11,7 +11,6 @@ const INITIAL_STATE = {
         text: "Test Again"
     }]
 }
-
 module.exports = function reduce(state = INITIAL_STATE, action) {
     return state
 }
