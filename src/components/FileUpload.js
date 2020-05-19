@@ -8,18 +8,24 @@ const FileUpload = () => {
   const [filename, setFilename] = useState('Choose File');
   const [uploadedFile, setUploadedFile] = useState({});
   const [message, setMessage] = useState('');
-  const [uploadPercentage, setUploadPercentage] = useState(0);
+  const [uploadPercentage, setUploadPercentage] = useState(0); 
 
   const onChange = e => {
     setFile(e.target.files[0]);
-    setFilename(e.target.files[0].name);
+    setFilename(e.target.files[0].name); //this will be a rename eventually
   };
 
   const onSubmit = async e => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('file', file);
-
+    formData.append('file', file); 
+    formData.append('visitorMessage', document.getElementById("visitorMessage").value);
+    formData.append('visitorName', document.getElementById("visitorName").value);
+    for (var value of formData.values()) {
+      console.log(value); 
+   }
+   
+    
     try {
       const res = await axios.post('/post', formData, {
         headers: {
@@ -38,6 +44,7 @@ const FileUpload = () => {
       });
 
       const { fileName, filePath } = res.data;
+      console.log("resp data: " + res.data);
 
       setUploadedFile({ fileName, filePath });
 
@@ -54,12 +61,12 @@ const FileUpload = () => {
   return (
     <Fragment>
       {message ? <Message msg={message} /> : null}
-      <form onSubmit={onSubmit}>
+      <form id="postForm" onSubmit={onSubmit}>
         <div className="container">
           <div className="row">
             <div className="form-group col-22">
               <label className="form-group col-8" htmlFor="visitorMessage">Message</label>
-              <textarea  class="form-control"rows="4" cols="150" id="visitorMessage" />
+              <textarea  className="form-control"rows="4" cols="150" id="visitorMessage" />
             </div>
           </div>
           <div className="row">
@@ -75,9 +82,9 @@ const FileUpload = () => {
                 {filename}
               </label>
             </div>
-            <label className='form-group ml-3' htmlFor="inputVisitor">From</label>
+            <label className='form-group ml-3' htmlFor="visitorName">From</label>
             <div className="form-group col-3">
-              <input type="text" className="form-control" id="inputVisitor" placeholder="Your Name" />
+              <input type="text" className="form-control" id="visitorName" placeholder="Your Name" />
             </div>
             <input
             type='submit'
