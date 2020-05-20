@@ -41,7 +41,6 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "jest-enzyme": "^7.1.2",
-    "really-need": "^1.9.2",
     "supertest": "^4.0.2"
   },
   "proxy": "http://localhost:5000/"
