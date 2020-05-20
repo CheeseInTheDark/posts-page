@@ -1,14 +1,8 @@
 import axios from 'axios';
 
-
-function post(password) {
-    return axios.post('/auth', {password: password})
-    .then(function (response) {
-        console.log("response data from api/login.js", response.data)
-      return response.data
-    });
+async function post(password) {
+    const response = await axios.post('/auth', {password: password})
+    return response.data
 }
 
-export default {
-    post
-}
+export default { post }
