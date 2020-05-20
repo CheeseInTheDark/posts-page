@@ -24,12 +24,9 @@ p {
   line-height: 1.2em;
 }
 
-input {
+input, textarea {
   font-family: 'Bitter', sans-serif;
-  color: #555;
-  height: 2rem;
-  padding-left:1em;
-  padding-right:1em;
+  color: #555; 
 }
 
 label {  
@@ -38,16 +35,12 @@ label {
   color: #6610f2;
 }
 
-button {
-  background-color: #40c9ff;
-  padding:1em;
-  font-family: 'Bitter', sans-serif;
-  border: none;
+button { 
+  font-family: 'Bitter', sans-serif; 
 }
 
 .borderedBox {
   border:1px solid #ccc;
   padding:25px;
 }
-
  

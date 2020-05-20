@@ -10,7 +10,7 @@ export default function Post({ post }) {
             <p className="post-message" id="post-text">{post.text}</p>
         </div>
         <div className="post-image-container">
-            <img className="post-image" src={post.image} />
+            <img className="post-image" id="post-image" src={post.image} />
         </div>
     </div>
 }

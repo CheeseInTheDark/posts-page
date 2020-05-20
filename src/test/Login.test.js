@@ -14,7 +14,7 @@ describe(Login, () => {
     })
 
     test("calls login on Login click", () => {
-        subject.find("#password").simulate("change", {target: {value: "password"}} )
+        subject.find("#inputPassword").simulate("change", {target: {value: "password"}} )
 
         subject.find("#login-button").simulate("click")
 
