@@ -47,7 +47,7 @@ app.post('/post', (req, res) => {
 
   if (req.files) {    
     const file = req.files.file 
-    messageData.image='/posts/'+file.name
+    messageData.image='/posts/'+newDir+'/'+file.name
     file.mv(`${__dirname}/../../public/posts/${newDir}/${file.name}`, err => {
       if (err) {
         console.error(err)

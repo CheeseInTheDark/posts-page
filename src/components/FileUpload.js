@@ -28,14 +28,12 @@ const FileUpload = () => {
       document.getElementById("visitorMessage").value = "";
       document.getElementById("visitorName").value = "";
       setTimeout(() => setUploadPercentage(0), 3000);
-      let updatedPosts =  await getPosts()
-      console.log("posts i got back: " + updatedPosts)
+      let updatedPosts =  await getPosts() 
       store.dispatch({
         type: 'LOAD_POSTS',
         value: updatedPosts
       })
-    } catch (err) {
-      console.log("line 37 FileUpload.js", err)
+    } catch (err) { 
       if (err.response.status === 500) {
         setMessage('There was a problem with the server');
       } else {
