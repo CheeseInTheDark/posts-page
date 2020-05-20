@@ -15,12 +15,10 @@ app.use(fileUpload())
 // Get All Posts Endpoint
 app.get('/post/all', (req, res) => {
   const dirs = fs.readdirSync(postPath) 
-  const posts = []
-  //for each dir...get the image and the text from the text file
-  dirs.map(function (dir){
+  const posts =  dirs.map(function (dir){
     console.log("mapped dir: " , dir)
     const fileText = fs.readFileSync('../../public/posts/'+ dir +'/message.txt')
-    posts.push(JSON.parse(fileText.toString())); 
+    return JSON.parse(fileText.toString())
   })
   console.log("final list of posts line 32" , posts)
   return res.status(200).send(JSON.stringify(posts))
