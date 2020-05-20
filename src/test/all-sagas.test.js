@@ -1,5 +1,5 @@
 import subject from '../all-sagas'
-import loginSaga from '../sagas/login'
+import watchLogin from '../sagas/watch-login'
 
 const middleware = {
     run: jest.fn()
@@ -11,6 +11,6 @@ describe('sagas', () => {
     })
 
     test('runUsing runs LOGIN saga', () => {
-        expect(middleware.run).toHaveBeenCalledWith(loginSaga)
+        expect(middleware.run).toHaveBeenCalledWith(watchLogin)
     })
 })

@@ -24,10 +24,18 @@ describe("login saga", () => {
     test("sets token on success", () => {
         loginApi.succeed()
 
-        const iterator = login()
+        const iterator = login({ type: "LOGIN", value: "password" })
 
-        expect(iterator.next().value).toDeepEqual(takeEvery("LOGIN"))
-        expect(iterator.next().value).toDeepEqual(call(loginApi, "password"))
-        expect(iterator.next().value).toDeepEqual(put({ type: "LOGIN", value: "token" }))
+        expect(iterator.next().value).toEqual(call(loginApi.post, "password"))
+        expect(iterator.next("token").value).toEqual(put({ type: "SET_TOKEN", value: "token" }))
+    })
+
+    test("dispatches failed login on failure", () => {
+        loginApi.succeed()
+
+        const iterator = login({ type: "LOGIN", value: "password" })
+
+        expect(iterator.next().value).toEqual(call(loginApi.post, "password"))
+        expect(iterator.throw(new Error()).value).toEqual(put({ type: "LOGIN_FAILED" }))
     })
 })

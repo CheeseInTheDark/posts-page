@@ -1,7 +1,7 @@
-import loginSaga from './sagas/login'
+import watchLogin from './sagas/watch-login'
 
 function runUsing(middleware) {
-    middleware.run(loginSaga)
+    middleware.run(watchLogin)
 }
 
 export default {
