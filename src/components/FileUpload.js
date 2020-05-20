@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from 'react';
 import Message from './Message';
 import Progress from './Progress';
-import axios from 'axios';
+import getPosts from '../api/getPosts'
 import store from '../store';
+import postPost from '../api/postPost'
 
 
 const FileUpload = () => {
@@ -11,43 +12,30 @@ const FileUpload = () => {
   const [message, setMessage] = useState('')
   const [uploadPercentage, setUploadPercentage] = useState(0)
 
-
   const onChange = e => {
     setFile(e.target.files[0]);
     setFilename(e.target.files[0].name);
   };
 
   const onSubmit = async e => {
-    e.preventDefault();
-    const formData = new FormData();
-
+    e.preventDefault(); 
     let visitorMessage = document.getElementById("visitorMessage").value
     let visitorName = document.getElementById("visitorName").value
-
-    formData.append('visitorMessage', visitorMessage);
-    formData.append('visitorName', visitorName);
-    formData.append('file', file);
-
-    try {
-      const res = await axios.post('/post', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        },
-        onUploadProgress: progressEvent => {
-          setUploadPercentage(
-            parseInt(
-              Math.round((progressEvent.loaded * 100) / progressEvent.total)
-            )
-          );
-          // Clear percentage
-          setTimeout(() => setUploadPercentage(0), 3000);
-        }
-      });
+    
+  try {
+      await postPost(visitorMessage, visitorName, file, setUploadPercentage)
       setMessage('Your Birthday Message has been Saved!');
       document.getElementById("visitorMessage").value = "";
       document.getElementById("visitorName").value = "";
+      setTimeout(() => setUploadPercentage(0), 3000);
+      let updatedPosts =  await getPosts()
+      console.log("posts i got back: " + updatedPosts)
+      store.dispatch({
+        type: 'LOAD_POSTS',
+        value: updatedPosts
+      })
     } catch (err) {
-      console.log(err)
+      console.log("line 37 FileUpload.js", err)
       if (err.response.status === 500) {
         setMessage('There was a problem with the server');
       } else {
