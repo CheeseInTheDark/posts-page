@@ -1,5 +1,6 @@
 const INITIAL_STATE = { 
-    posts: []
+    posts: [],
+    route: "login"
 }
 module.exports = function reduce(state = INITIAL_STATE, action) {
     switch (action.type) {
@@ -12,6 +13,8 @@ module.exports = function reduce(state = INITIAL_STATE, action) {
             }) 
         case 'LOGIN_FAILED':
             return Object.assign({}, state, { loginFailed: true })
+        case 'ROUTE_POSTS':
+            return Object.assign({}, state, { route: "posts" })
     }
     return state
 }

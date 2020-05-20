@@ -1,14 +1,11 @@
 import request from 'supertest'
 
-jest.mock('uid-generator', () => ({
-    __esModule: true,
-    default: function UIDGenerator() {
-        return {
-            generate: async () => Promise.resolve("token"),
-            generateSync: () => "token"
-        }
+jest.mock('uid-generator', () => function UIDGenerator() {
+    return {
+        generate: async () => Promise.resolve("token"),
+        generateSync: () => "token"
     }
-}))
+})
 
 describe("app", () => {
     let subject

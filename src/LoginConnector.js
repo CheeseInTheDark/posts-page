@@ -5,4 +5,8 @@ const mapDispatchToProps = dispatch => ({
     login: password => dispatch({ type: "LOGIN", value: password })
 })
 
-export default connect(null, mapDispatchToProps)(Login)
+const mapStateToProps = state => ({
+    loginFailed: state.loginFailed
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

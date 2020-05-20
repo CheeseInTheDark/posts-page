@@ -12,7 +12,9 @@ jest.mock("../Login", () => ({
 
 describe("LoginConnector", () => {
 
-    let store = createStore(() => {})
+    let store = createStore(() => ({
+        loginFailed: true
+    }))
     jest.spyOn(store, "dispatch")
     let subject
 
@@ -28,5 +30,9 @@ describe("LoginConnector", () => {
         subject.find(Login).props().login("password")
 
         expect(store.dispatch).toHaveBeenCalledWith({ type: "LOGIN", value: "password" })
+    })
+
+    test("map state to show login error message", () => {
+        expect(subject.find(Login)).toHaveProp("loginFailed", true)
     })
 })

@@ -3,12 +3,13 @@ import './App.css'
 
 import './index.css'
 import LoginConnector from './LoginConnector'
+import PostsConnector from './PostsConnector'
 
-function App() {
-  return (
-    <div className="App">
-      <LoginConnector/>
-    </div> 
+function App({ route }) {
+  return ( 
+    <div className="App"> 
+      { route == "login" ? <LoginConnector /> : <PostsConnector/> }
+    </div>  
   )
 }
 

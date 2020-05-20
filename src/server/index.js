@@ -19,11 +19,9 @@ app.use(fileUpload())
 app.get('/post/all', (req, res) => {
   const dirs = fs.readdirSync(postPath) 
   const posts =  dirs.map(function (dir){
-    console.log("mapped dir: " , dir)
     const fileText = fs.readFileSync('../../public/posts/'+ dir +'/message.txt')
     return JSON.parse(fileText.toString())
   })
-  console.log("final list of posts line 32" , posts)
   return res.status(200).send(JSON.stringify(posts))
 })
 
