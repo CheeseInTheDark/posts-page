@@ -1,14 +1,16 @@
 import React, { Fragment, useState } from 'react';
 import Message from './Message';
 import Progress from './Progress';
-import axios from 'axios';
+import getPosts from '../api/getPosts'
+import store from '../store';
+import postPost from '../api/postPost'
+
 
 const FileUpload = () => {
-  const [file, setFile] = useState('');
-  const [filename, setFilename] = useState('Choose File');
-  const [uploadedFile, setUploadedFile] = useState({});
-  const [message, setMessage] = useState('');
-  const [uploadPercentage, setUploadPercentage] = useState(0);
+  const [file, setFile] = useState('')
+  const [filename, setFilename] = useState('Choose File')
+  const [message, setMessage] = useState('')
+  const [uploadPercentage, setUploadPercentage] = useState(0)
 
   const onChange = e => {
     setFile(e.target.files[0]);
@@ -16,33 +18,22 @@ const FileUpload = () => {
   };
 
   const onSubmit = async e => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('file', file);
-
-    try {
-      const res = await axios.post('/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        },
-        onUploadProgress: progressEvent => {
-          setUploadPercentage(
-            parseInt(
-              Math.round((progressEvent.loaded * 100) / progressEvent.total)
-            )
-          );
-
-          // Clear percentage
-          setTimeout(() => setUploadPercentage(0), 10000);
-        }
-      });
-
-      const { fileName, filePath } = res.data;
-
-      setUploadedFile({ fileName, filePath });
-
-      setMessage('File Uploaded');
-    } catch (err) {
+    e.preventDefault(); 
+    let visitorMessage = document.getElementById("visitorMessage").value
+    let visitorName = document.getElementById("visitorName").value
+    
+  try {
+      await postPost(visitorMessage, visitorName, file, setUploadPercentage)
+      setMessage('Your Birthday Message has been Saved!');
+      document.getElementById("visitorMessage").value = "";
+      document.getElementById("visitorName").value = "";
+      setTimeout(() => setUploadPercentage(0), 3000);
+      let updatedPosts =  await getPosts() 
+      store.dispatch({
+        type: 'LOAD_POSTS',
+        value: updatedPosts
+      })
+    } catch (err) { 
       if (err.response.status === 500) {
         setMessage('There was a problem with the server');
       } else {
@@ -53,42 +44,45 @@ const FileUpload = () => {
 
   return (
     <Fragment>
-      {message ? <Message msg={message} /> : null}
-      <form onSubmit={onSubmit}>
-        <div className='custom-file mb-4'>
-          <input
-            type='file'
-            className='custom-file-input'
-            id='customFile'
-            onChange={onChange}
-          />
-          <label className='custom-file-label' htmlFor='customFile'>
-            {filename}
-          </label>
-          <p>
-            <label>Message</label><br /><textarea rows="6" cols="150" id="visitorMessage" />
-          </p>
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleFormControlTextarea1">Example textarea</label>
-          <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-
-        <Progress percentage={uploadPercentage} />
-        <input
-          type='submit'
-          value='Upload'
-          className='btn btn-primary btn-block mt-4'
-        />
-      </form>
-      {uploadedFile ? (
-        <div className='row mt-5'>
-          <div className='col-md-6 m-auto'>
-            <h3 className='text-center'>{uploadedFile.fileName}</h3>
-            <img style={{ width: '100%' }} src={uploadedFile.filePath} alt='' />
+      <form id="postForm" onSubmit={onSubmit}>
+        <div className="container">
+          <div className="row">
+            {message ? <Message msg={message} /> : null}
+            <p className="scriptTitle centered">Add a Photo and Birthday Message!</p>
           </div>
+          <div className="row">
+            <div className="form-group col-22">
+              <label className="form-group col-8" htmlFor="visitorMessage">Message</label>
+              <textarea className="form-control" rows="4" cols="150" id="visitorMessage" />
+            </div>
+          </div>
+          <div className="row">
+            <label className="form-group ml-3">Share a Picture</label>
+            <div className="form-group col-4 custom-file ml-3 mr-5">
+              <input
+                type='file'
+                className='custom-file-input'
+                id='customFile'
+                onChange={onChange}
+              />
+              <label className='form-group custom-file-label' htmlFor='customFile'>
+                {filename}
+              </label>
+            </div>
+            <label className='form-group ml-3' htmlFor="visitorName">From</label>
+            <div className="form-group col-3">
+              <input type="text" className="form-control" id="visitorName" placeholder="Your Name" />
+            </div>
+            <input
+              type='submit'
+              value='Send!'
+              className='btn btn-secondary'
+            />
+          </div>
+          <Progress percentage={uploadPercentage} />
+          <br />
         </div>
-      ) : null}
+      </form>
     </Fragment>
   );
 };
