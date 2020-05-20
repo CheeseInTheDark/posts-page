@@ -1,13 +1,13 @@
+const auth = require('./auth')
 const express = require('express')
-const app = express()
-const port = 5000
 const fs = require('fs')
 const moment = require('moment')
+const app = express()
+const port = 5000
 
 const fileUpload = require('express-fileupload')
 const postPath = '../../public/posts'
 
-import auth from './auth'
 
 app.post('/auth', express.json(), auth)
 

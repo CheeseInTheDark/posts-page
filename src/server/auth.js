@@ -1,8 +1,8 @@
-import UIDGenerator from 'uid-generator'
+const UIDGenerator = require('uid-generator')
 
 const generator = new UIDGenerator()
 
-export default function auth(req, res) {
+module.exports = function auth(req, res) {
     req.body.password == "LizzieIs16" ? success(res) : failure(res)
 }
 
