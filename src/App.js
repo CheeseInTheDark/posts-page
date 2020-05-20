@@ -1,13 +1,13 @@
 import React from 'react'
-import Login from './Login'
 import './App.css'  
 
 import './index.css'
+import LoginConnector from './LoginConnector'
 
 function App() {
   return (
     <div className="App">
-      <Login/>
+      <LoginConnector/>
     </div> 
   )
 }

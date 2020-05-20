@@ -22,13 +22,13 @@ export default function Login({ login }) {
                 please text mom (Sandy) at 614-537-3116.
                 </p>
 
-                <form className="form-inline">
+                <div className="form-inline">
                     <div className="form-group">
                         <label htmlFor="inputPassword" >Super Secret Password</label>&nbsp;&nbsp;
-                        <input type="password" className="form-control" id="inputPassword" onChange={ event => setPassword(event.target.value) } placeholder="Password" />
+                        <input type="text" className="form-control" id="inputPassword" onChange={ event => setPassword(event.target.value) } placeholder="Password" />
                     </div>
-                    <button type="submit" className="btn btn-secondary" id="login-button" onClick = { () => login(password) }>Next</button>
-                </form>
+                    <button className="btn btn-secondary" id="login-button" onClick = { () => login(password) }>Next</button>
+                </div>
 
             </div>
         </div>

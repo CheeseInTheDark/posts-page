@@ -15,7 +15,7 @@ app.get('/', (req, res) => res.send('GREETINGS TERGIVERSE!'))
 
 app.use(express.static('../../public'))
 app.use(fileUpload())
-
+ 
 app.get('/post/all', (req, res) => {
   const dirs = fs.readdirSync(postPath) 
   const posts =  dirs.map(function (dir){
