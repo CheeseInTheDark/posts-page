@@ -13,7 +13,7 @@ describe(Login, () => {
         subject = shallow(<Login login={ login } />)
     })
 
-    test("calls setToken on Login click", () => {
+    test("calls login on Login click", () => {
         subject.find("#password").simulate("change", {target: {value: "password"}} )
 
         subject.find("#login-button").simulate("click")
