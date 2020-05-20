@@ -1,31 +1,30 @@
+const auth = require('./auth')
 const express = require('express')
-const app = express()
-const port = 5000
 const fs = require('fs')
 const moment = require('moment')
+const app = express()
+const port = 5000
 
 const fileUpload = require('express-fileupload')
 const postPath = '../../public/posts'
+
+
+app.post('/auth', express.json(), auth)
 
 app.get('/', (req, res) => res.send('GREETINGS TERGIVERSE!'))
 
 app.use(express.static('../../public'))
 app.use(fileUpload())
-
-// Get All Posts Endpoint
+ 
 app.get('/post/all', (req, res) => {
   const dirs = fs.readdirSync(postPath) 
   const posts =  dirs.map(function (dir){
-    console.log("mapped dir: " , dir)
     const fileText = fs.readFileSync('../../public/posts/'+ dir +'/message.txt')
     return JSON.parse(fileText.toString())
   })
-  console.log("final list of posts line 32" , posts)
   return res.status(200).send(JSON.stringify(posts))
 })
 
-
-// Add New Post Endpoint
 app.post('/post', (req, res) => {  
   const dirs =   fs.readdirSync(postPath) 
   const newDir = (dirs.length + 1).toString() 
@@ -62,4 +61,6 @@ app.post('/post', (req, res) => {
   return res.status(200).send()
 })
 
-app.listen(port, () => console.log('Server Started...'))
+module.exports = new Promise(resolve => {
+  const server = app.listen(5000, () => resolve(server))
+})
