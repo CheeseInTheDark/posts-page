@@ -1,1 +1,4 @@
-module.exports = {}
+module.exports = {
+    port: 5000,
+    staticDirectory: '../../public/'
+}

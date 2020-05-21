@@ -32,10 +32,10 @@ describe("app", () => {
     
     beforeEach(async () => {
         tokenStore = require('../token-store')
-        fs.writeFileSync('./test-file', "test")
-
         subject = await require('../index.js')
+        
         fs.mkdirSync('./temp/posts', { recursive: true })
+        fs.writeFileSync('./temp/test-file', "test")
     })
     
     afterEach(done => {
@@ -47,6 +47,38 @@ describe("app", () => {
         })
     })
     
+    describe("GET /post/all", () => {
+        beforeEach(() => {
+            fs.mkdirSync("./temp/posts/1")
+            fs.mkdirSync("./temp/posts/2")
+    
+            fs.writeFileSync("./temp/posts/1/message.txt", `{"post": 1}`, {recursive: true})
+            fs.writeFileSync("./temp/posts/2/message.txt", `{"post": 2}`, {recursive: true})
+        })
+
+        test("returns all posts when given valid token", async () => {
+            tokenStore.add("token")
+
+            const response = await request(subject)
+                .get('/post/all')
+                .set('Authorization', "token")
+                .send()
+
+            expect(response.text).toEqual(`[{"post":2},{"post":1}]`)
+            expect(response.status).toEqual(200)
+        })
+
+        test("returns 403 when token is invalid", async () => {
+            const response = await request(subject)
+                .get('/post/all')
+                .set('Authorization', "bad token")
+                .send()
+
+            expect(response.text).toBe("")
+            expect(response.status).toEqual(403)
+        })
+    })
+
     describe("POST /post", () => {
         test("creates a post when given valid token", async () => {
             tokenStore.add("token")
@@ -56,7 +88,7 @@ describe("app", () => {
                 .field("visitorMessage", "hi")
                 .field("visitorName", "Joe")
                 .set('Authorization', "token")
-                .attach("file", './test-file')
+                .attach("file", './temp/test-file')
 
             const postMessage = JSON.parse(fs.readFileSync("./temp/posts/1/message.txt").toString())
 
@@ -76,7 +108,7 @@ describe("app", () => {
                 .field("visitorMessage", "hi")
                 .field("visitorName", "Joe")
                 .set('Authorization', "token")
-                .attach("file", './test-file')
+                .attach("file", './temp/test-file')
 
             expect(fs.existsSync("./temp/posts/1")).toBe(false)
             expect(response.status).toBe(403)
