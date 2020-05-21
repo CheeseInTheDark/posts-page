@@ -9,6 +9,6 @@ const middleware = createReduxSagaMiddleware()
 
 export default createStore(reducer, composeEnhancers(
     applyMiddleware(middleware)
-    ))
+))
 
 sagas.runUsing(middleware)
