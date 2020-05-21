@@ -8,7 +8,7 @@ import postPost from '../api/postPost'
 
 const FileUpload = () => {
   const [file, setFile] = useState('')
-  const [filename, setFilename] = useState('Choose File')
+  const [filename, setFilename] = useState('Choose Image File')
   const [message, setMessage] = useState('')
   const [uploadPercentage, setUploadPercentage] = useState(0)
 
@@ -41,50 +41,47 @@ const FileUpload = () => {
       }
     }
   };
-
   return (
     <Fragment>
       <form id="postForm" onSubmit={onSubmit}>
-        <div className="container">
-          <div className="row">
-            {message ? <Message msg={message} /> : null}
-            <p className="scriptTitle centered">Add a Photo and Birthday Message!</p>
+      <div className="container">
+      {message ? <Message msg={message} /> : null}
+      <p className="scriptTitle centered">Add a Photo and Birthday Message!</p>
+      
+        <div className="form-row">
+          <div className="form-group col-md-12">
+            <label htmlFor="visitorMessage">Message</label>
+            <textarea className="form-control" rows="4" cols="150" id="visitorMessage" placeholder="" />
           </div>
-          <div className="row">
-            <div className="form-group col-22">
-              <label className="form-group col-8" htmlFor="visitorMessage">Message</label>
-              <textarea className="form-control" rows="4" cols="150" id="visitorMessage" />
-            </div>
-          </div>
-          <div className="row">
-            <label className="form-group ml-3">Share a Picture</label>
-            <div className="form-group col-4 custom-file ml-3 mr-5">
-              <input
-                type='file'
-                className='custom-file-input'
-                id='customFile'
-                onChange={onChange}
-              />
-              <label className='form-group custom-file-label' htmlFor='customFile'>
-                {filename}
-              </label>
-            </div>
-            <label className='form-group ml-3' htmlFor="visitorName">From</label>
-            <div className="form-group col-3">
-              <input type="text" className="form-control" id="visitorName" placeholder="Your Name" />
-            </div>
+        </div>
+        <div className="form-row">
+          <div className="form-group col-md-4">
+            <label htmlFor="visitorName">From</label>
+            <input type="text" className="form-control" id="visitorName" placeholder="Your Name" />
+          </div> 
+          <div className="form-group col-md-8" style={{ marginTop: "33px" }}>
             <input
-              type='submit'
-              value='Send!'
-              className='btn btn-secondary'
+              type='file'
+              className='custom-file-input'
+              id='customFile'
+              onChange={onChange}
             />
+            <label className='form-group custom-file-label' htmlFor='customFile'>
+              {filename}
+            </label>
           </div>
-          <Progress percentage={uploadPercentage} />
-          <br />
+        </div>
+        <input
+          type='submit'
+          value='Send!'
+          className='btn btn-secondary btn-block mt-4'
+        />
+        <Progress percentage={uploadPercentage} />
         </div>
       </form>
     </Fragment>
   );
+ 
 };
 
 export default FileUpload;

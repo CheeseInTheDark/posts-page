@@ -3,14 +3,12 @@ import moment from 'moment'
 
 export default function Post({ post }) {
 
-    return <div className="post-box">
-        <div className="post-text">
-            <p className="post-date" id="date-text">{moment(post.timestamp).format("MM/DD/YYYY")} </p>
-            <p className="post-name" id="name-text">{post.name}</p>
-            <p className="post-message" id="post-text">{post.text}</p>
-        </div>
-        <div className="post-image-container">
-            <img className="post-image" id="post-image" src={post.image} />
-        </div>
+    return <div className="card">
+      {post.image  == null ? '' : <img className="card-img-top img-fluid" src={post.image} alt="YAY!" />}
+      <div className="card-block">
+        <h4 className="card-title">{post.name}</h4>
+        <p className="card-text">{post.text} - {moment(post.timestamp).format("MM/DD/YYYY")} </p>
+      </div>
     </div>
+
 }

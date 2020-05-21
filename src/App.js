@@ -7,7 +7,7 @@ import PostsConnector from './PostsConnector'
 
 function App({ route }) {
   return ( 
-    <div className="App"> 
+    <div className="container"> 
       { route == "login" ? <LoginConnector /> : <PostsConnector/> }
     </div>  
   )
