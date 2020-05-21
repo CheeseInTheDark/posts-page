@@ -20,6 +20,7 @@ app.use(express.static(staticDir))
 app.use(fileUpload())
  
 app.get('/post/all', (req, res) => {
+  console.log(req.headers.authorization)
   if (!tokenStore.isValid(req.headers.authorization)) {
     return res.status(403).send()
   }
@@ -33,6 +34,7 @@ app.get('/post/all', (req, res) => {
 })
 
 app.post('/post', (req, res) => {
+  
   if (!tokenStore.isValid(req.headers.authorization)) {
     return res.status(403).send()
   }

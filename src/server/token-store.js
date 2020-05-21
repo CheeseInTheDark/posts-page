@@ -4,7 +4,7 @@ const tokenExpirationTimeMs = tokenExpirationTimeMin * 60 * 1000
 let tokens = []
 
 function isValid(token) {
-     return tokens.indexOf(token) > -1
+    return tokens.indexOf(token) > -1
 }
 
 function add(token) {

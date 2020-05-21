@@ -8,11 +8,13 @@ describe("login api", () => {
 
         subject.post("password")
     
-        expect(axios.post).toHaveBeenCalledWith("/auth", { password: "password" })
+        expect(axios.post).toHaveBeenCalledWith("/auth", { 
+            password: "password" 
+        })
     })
 
     test("returns token from response", async () => {
-        jest.spyOn(axios, "post").mockImplementation(() => Promise.resolve({ data: "token" }))
+        jest.spyOn(axios, "post").mockImplementation(() => Promise.resolve({ data: { token: "token" } }))
 
         const result = await subject.post("password")
 

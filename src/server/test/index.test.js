@@ -139,5 +139,17 @@ describe("app", () => {
             expect(response.header['content-type']).toBe("application/json; charset=utf-8")
             expect(response.body.token).toBe("token")
         })
+
+        test("auth adds new token if password is correct", async () => {
+            const expectedPassword = "LizzieIs16"
+
+            await request(subject)
+                .post('/auth')
+                .send({
+                    password: expectedPassword
+                })
+
+            expect(tokenStore.isValid("token")).toBe(true)
+        })
     })
 })
